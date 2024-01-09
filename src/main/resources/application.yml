@@ -1,0 +1,87 @@
+# database init
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/petclinic
+    username: root
+    password: petclinic
+  # do not attempt to replace database with in-memory database
+  test:
+    database:
+      replace: none
+  # Internationalization
+  messages:
+    basename: messages/messages
+  # Maximum time static resources should be cached
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 12h
+# Actuator / Management
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: info,health
+    jmx:
+      exposure:
+        exclude: "*"
+server:
+  shutdown: graceful
+# Logging
+logging:
+  level:
+    sql: debug
+    org:
+      springframework: info
+# logging.level.org.springframework.web=debug
+# logging.level.org.springframework.context.annotation=trace
+---
+# database init
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  datasource:
+    url: jdbc:mysql://mysql:3306/petclinic
+    username: root
+    password: petclinic
+  # do not attempt to replace database with in-memory database
+  test:
+    database:
+      replace: none
+  # Internationalization
+  messages:
+    basename: messages/messages
+  # Maximum time static resources should be cached
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 12h
+# Actuator / Management
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: info,health
+    jmx:
+      exposure:
+        exclude: "*"
+server:
+  shutdown: graceful
+# Logging
+logging:
+  file:
+    path: /logs
+  level:
+    sql: debug
+    org:
+      springframework: info
+# logging.level.org.springframework.web=debug
+# logging.level.org.springframework.context.annotation=trace

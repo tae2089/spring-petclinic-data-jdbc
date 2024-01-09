@@ -1,0 +1,1 @@
+helm upgrade -i -n default mysql bitnami/mysql --values values.yaml --version 9.14.4
